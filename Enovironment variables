@@ -1,0 +1,41 @@
+
+
+******************************************Start*************************************
+
+Note-Environment variables commands
+
+Step-1 vi pod3.yml
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: environments
+spec:
+  containers:
+    - name: c00
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
+      env:                        # List of environment variables to be used inside the pod
+      - name: MYNAME
+        value: BHUPINDER
+
+
+
+Step-2 kubectl apply -f pod3.yml
+
+
+Step-3 kubectl exec environments -it -- /bin/bash
+
+
+Step-4 root@envirnments:/# env
+
+
+Step-5 root@envirnments:/# echo &MYNAME
+
+Step-6  exit
+
+step-7 kubectl delete -f pod3.yml
+
+
+**********************************END******************************
